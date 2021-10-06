@@ -56,6 +56,7 @@ exports.findOne = (req, res) => {
       if (!data)
         res.status(404).send({ message: "Not found Employee with id " + id });
       else res.send(data);
+      console.log("data", data);
     })
     .catch((err) => {
       res
