@@ -26,6 +26,11 @@ pipeline {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
+    stage('Push') {
+      steps {
+        sh 'docker push kalvi1n98/my-app:1.0'
+      }
+    }
    
   }
   post {
