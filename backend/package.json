@@ -4,7 +4,7 @@
   "description": "test project for addis software",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",    
+    "test": "mocha --timeout 10000",
     "dev": "nodemon server.js"
   },
   "keywords": [
@@ -22,6 +22,9 @@
     "mongoose": "^6.0.8"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.2",
     "nodemon": "^2.0.13"
   }
 }

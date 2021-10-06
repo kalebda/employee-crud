@@ -14,6 +14,7 @@ pipeline {
     stage('test') {
       steps {
         echo 'testing an app...'
+        sh 'npm test'
       }
     }
     stage('deploy') {

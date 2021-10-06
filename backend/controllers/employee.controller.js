@@ -1,4 +1,4 @@
-const Employee = require("../models/employee.model.js");
+const Employee = require("../models/employee.js");
 
 // Create and Save a new Employee
 exports.create = (req, res) => {
@@ -20,7 +20,10 @@ exports.create = (req, res) => {
   employee
     .save(employee)
     .then((data) => {
-      res.send(data);
+      res.status(200).send({
+        data: data,
+        message: "Employee successfully added!",
+      });
     })
     .catch((err) => {
       res.status(500).send({
@@ -32,8 +35,6 @@ exports.create = (req, res) => {
 
 // Retrieve all Employees from the database.
 exports.findAll = (req, res) => {
-  const id = req.query.id;
-
   Employee.find()
     .then((data) => {
       res.send(data);

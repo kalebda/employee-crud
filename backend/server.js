@@ -53,3 +53,5 @@ app.use((req, res) => {
     message: err.message || "The page you requested is not available.",
   });
 });
+
+module.exports = app; // for testing
