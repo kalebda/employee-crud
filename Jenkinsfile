@@ -1,5 +1,6 @@
 // Jenkinsfile (Declarative Pipeline)
-pipeline { 
+pipeline {
+  agent any 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('kalvi1n98-dockerhub')
   }
