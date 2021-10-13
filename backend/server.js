@@ -6,10 +6,10 @@ const dbConfig = require("./config/db.config.js");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 5000;
 
 var corsOptions = {
-  origin: "http://localhost:5000",
+  origin: "http://localhost:3000",
 };
 
 app.use(cors(corsOptions));

@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Employees from the database.
+//Retrieve all Employees from the database.
 exports.findAll = (req, res) => {
   Employee.find()
     .then((data) => {
@@ -56,7 +56,6 @@ exports.findOne = (req, res) => {
       if (!data)
         res.status(404).send({ message: "Not found Employee with id " + id });
       else res.send(data);
-      console.log("data", data);
     })
     .catch((err) => {
       res

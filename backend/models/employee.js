@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const Schema = mongoose.Schema;
 
 const employeeSchema = new Schema(
@@ -36,6 +37,8 @@ employeeSchema.method("toJSON", function () {
   object.id = _id;
   return object;
 });
+
+employeeSchema.plugin(mongoosePaginate);
 
 const Employee = mongoose.model("Employee", employeeSchema);
 module.exports = Employee;
