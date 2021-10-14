@@ -13,6 +13,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+
+import moment from "moment";
 
 interface Props {
   employee: employee;
@@ -41,8 +44,11 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
         subheader={employee.gender}
       />
       <CardContent>
-        <Typography>{employee.salary}</Typography>
-        <Typography>{employee.dateOfBirth}</Typography>
+        Salary:<Typography>{employee.salary}</Typography>
+        Date of Birth:
+        <Typography>
+          {moment(employee.dateOfBirth).format("dddd Do MMMM YYYY")}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button
@@ -59,6 +65,9 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           color="error"
         >
           Delete
+        </Button>
+        <Button component={RouterLink} to={"/employee/" + employee.id}>
+          <NavigateNextIcon />
         </Button>
       </CardActions>
     </Card>

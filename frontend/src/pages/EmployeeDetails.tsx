@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
 import { Link as RouterLink } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 
 import { connect } from "react-redux";
+
 import { RootState } from "../_reducers";
-import { RouteComponentProps } from "react-router";
 import { employee } from "../_reducers/employeeReducer";
 import { fetchEmployee } from "../_action/index";
 import { fetchEmployeeActionCreator } from "../_types/actionCreatorTypes";
@@ -14,16 +15,15 @@ import moment from "moment";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-
 import Button from "@mui/material/Button";
 
 interface EmployeeShowProps extends RouteComponentProps<OwnPropsParams> {
-  employee: employee;
+  fetchedEmployee: employee;
   fetchEmployee: fetchEmployeeActionCreator;
 }
 
 const EmployeeDetails: React.FC<EmployeeShowProps> = ({
-  employee,
+  fetchedEmployee,
   fetchEmployee,
   match,
 }) => {
@@ -33,18 +33,19 @@ const EmployeeDetails: React.FC<EmployeeShowProps> = ({
     fetchEmployee(Number(match.params.id));
   }, [fetchEmployee]);
 
+  console.log("employeeee", fetchedEmployee);
   return (
     <>
       <Container maxWidth="sm">
         <Typography variant="h3" component="h1" align="center" color="primary">
-          {employee.name}
+          {fetchedEmployee.name}
         </Typography>
         <Box mt={2} textAlign="center">
-          {employee.gender}{" "}
+          {fetchedEmployee.gender}{" "}
           <Box display="inline" mx={1} color="grey.500">
             |
           </Box>{" "}
-          {moment(employee.dateOfBirth).format("dddd Do MMMM YYYY")}
+          {moment(fetchedEmployee.dateOfBirth).format("dddd Do MMMM YYYY")}
         </Box>
 
         <Box display="flex" borderTop={1} borderColor="grey.400" pt={5} mt={5}>
@@ -52,7 +53,7 @@ const EmployeeDetails: React.FC<EmployeeShowProps> = ({
             <Box mr={0.5}>
               <Button
                 component={RouterLink}
-                to={"/employee/edit/" + employee.id}
+                to={"/employee/edit/" + fetchedEmployee.id}
                 variant="outlined"
               >
                 Edit
@@ -61,7 +62,7 @@ const EmployeeDetails: React.FC<EmployeeShowProps> = ({
             <Box ml={0.5}>
               <Button
                 component={RouterLink}
-                to={"/employee/delete/" + employee.id}
+                to={"/employee/delete/" + fetchedEmployee.id}
                 variant="outlined"
                 color="error"
               >
@@ -84,7 +85,7 @@ function mapStateToProps(
   ownProps: RouteComponentProps<OwnPropsParams>
 ) {
   return {
-    post: state.employees.items[Number(ownProps.match.params.id)],
+    fetchedEmployee: state.employees.items[Number(ownProps.match.params.id)],
   };
 }
 

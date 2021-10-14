@@ -3,17 +3,23 @@ const Employee = require("../models/employee.js");
 // Create and Save a new Employee
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name) {
+  if (!req.body.employee.name) {
+    console.log(
+      req.body.employee.name,
+      req.body.employee.dateOfBirth,
+      req.body.employee.salary,
+      req.body.employee.gender
+    );
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create an Employee
   const employee = new Employee({
-    name: req.body.name,
-    dateOfBirth: req.body.dateOfBirth,
-    salary: req.body.salary,
-    gender: req.body.gender,
+    name: req.body.employee.name,
+    dateOfBirth: req.body.employee.dateOfBirth,
+    salary: req.body.employee.salary,
+    gender: req.body.employee.gender,
   });
 
   // Save Employee in the database

@@ -16,14 +16,14 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 interface EmployeeDeleteProps extends RouteComponentProps<OwnPropsParams> {
-  employee: employee;
+  fetchedEmployee: employee;
   fetchEmployee: fetchEmployeeActionCreator;
   deleteEmployee: deleteEmployeeActionCreator;
 }
 
 const DeleteEmployee: React.FC<EmployeeDeleteProps> = ({
   deleteEmployee,
-  employee,
+  fetchedEmployee,
   fetchEmployee,
   match,
 }) => {
@@ -55,7 +55,7 @@ const DeleteEmployee: React.FC<EmployeeDeleteProps> = ({
   }
 
   function renderContent() {
-    if (!employee) {
+    if (!fetchedEmployee) {
       return "Are you sure?";
     }
     return (
@@ -94,7 +94,7 @@ function mapStateToProps(
   ownProps: RouteComponentProps<OwnPropsParams>
 ) {
   return {
-    employee: state.employees.items[Number(ownProps.match.params.id)],
+    fetchedEmployee: state.employees.items[Number(ownProps.match.params.id)],
   };
 }
 

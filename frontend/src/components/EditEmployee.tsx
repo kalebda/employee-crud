@@ -17,7 +17,7 @@ import { RouteComponentProps } from "react-router";
 import { EmployeeForm } from "../pages/EmployeeForm";
 
 interface EmployeeEditProps extends RouteComponentProps<OwnPropsParams> {
-  employee: employee;
+  fetchedEmployee: employee;
   fetchEmployee: fetchEmployeeActionCreator;
   editEmployee: editEmployeeActionCreator;
 }
@@ -26,7 +26,7 @@ const EditEmployee: React.FC<EmployeeEditProps> = ({
   editEmployee,
   match,
   fetchEmployee,
-  employee,
+  fetchedEmployee,
 }) => {
   // const { id } = useParams<{ id?: string }>();
 
@@ -34,20 +34,21 @@ const EditEmployee: React.FC<EmployeeEditProps> = ({
     fetchEmployee(Number(match.params.id));
   }, [fetchEmployee]);
 
-  if (!employee) {
+  if (!fetchedEmployee) {
+    console.log("inhere");
     return null;
   }
   return (
     <EmployeeForm
       initialValues={_.pick(
-        employee,
+        fetchedEmployee,
         "name",
         "gender",
         "salary",
         "dateOfBirth"
       )}
       onSubmit={editEmployee}
-      currentEmployee={employee}
+      currentEmployee={fetchedEmployee}
     />
   );
 };
@@ -61,7 +62,7 @@ function mapStateToProps(
   ownProps: RouteComponentProps<OwnPropsParams>
 ) {
   return {
-    employee: state.employees.items[Number(ownProps.match.params.id)],
+    fetchedEmployee: state.employees.items[Number(ownProps.match.params.id)],
   };
 }
 

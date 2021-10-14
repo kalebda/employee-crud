@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
